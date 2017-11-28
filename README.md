@@ -1,29 +1,33 @@
 # How it works
 #get_data.py
 
-There is a script 'get_data.py' that shoul be followed by inline args such as:
+There is a script 'get_data.py' that should be followed by inline args such as:
 - FW name (must be present in d_list.py)
 - JTAC case number
 - Slack channel_id
 
-The orders of the args doesn't matter. Only FW name is a mandatory arg. Script will get the IP address the device from d_list.py, username = cne, password from /root/.cne and will get the logs and RSI and will store them locally in /root/data_to_upload/<FW name>
+Example:
+/root/jtac/get_logs.py LB3-CFW 2017-1117-25252 --#network-active
 
-If a case number is provided as an arg, the script will try upload collected logs and rsi to the corresponding JTAC case.
+The order of the args doesn't matter. Only FW name is a mandatory arg. Script will get the IP address of the device from d_list.py, username = cne, password from /root/.cne and will get the logs and RSI and will download them to /root/data_to_upload/<FW name>
+
+If a case number is provided as an arg, the script will try upload collected logs and rsi to the corresponding JTAC case using SFTP.
 
 If Slack channel_id is provided, the script will try upload its execution log to the corresponding slack channel, using netmonkey credentials. Netmonkey password is stored in /root/.netrc
 
 #slack_bot.py
 
 'slack_bot.py' runs in the background listening the particular command across all the Slack channels: '@netmonkey jtac jtac_case_number fw_name'. The order of the args after 'jtac' doesn't matter.
-Then 'slack_bot.py' just runs the script 'get_data.py' giving args: jtac_case_number fw_name channel_id, where the channel_id is the channel where the command was given. 'get_data.py' will try to get logs and rsi, upload them to the case and update the corresponding slack channel with its execution log.
+Then 'slack_bot.py' just runs the script 'get_data.py' giving args: jtac_case_number fw_name channel_id, where the channel_id is the Slack channel where the command was given. 'get_data.py' will try to get logs and rsi, upload them to the case and update the corresponding Slack channel with its execution log.
 
 #server
 
 1) Everything was tested on Centos 7
+Basically, we need to make sure that 'slack_bot.py' always runs, Python3 and the required modules are installed and HDD doesn't get overwhelmed with the data downloaded from the FWs.
 
 2) Create the directory /root/jtac and copy everything to there
 
-3) Create two password files in /root directory:
+3) Create two password files in the /root directory:
 $ cat /root/.cne
 some_password_string
 $ cat /root/.netrc
