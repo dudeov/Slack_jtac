@@ -13,10 +13,12 @@ If a case number is provided as an arg, the script will try upload collected log
 If Slack channel_id is provided, the script will try upload its execution log to the corresponding slack channel, using netmonkey credentials. Netmonkey password is stored in /root/.netrc
 
 #slack_bot.py
-slack_bot.py runs in the background listening the particular command across all the Slack channels: '@netmonkey jtac jtac_case_number fw_name'. The order of the args after 'jtac' doesn't matter.
+
+'slack_bot.py' runs in the background listening the particular command across all the Slack channels: '@netmonkey jtac jtac_case_number fw_name'. The order of the args after 'jtac' doesn't matter.
 Then 'slack_bot.py' just runs the script 'get_data.py' giving args: jtac_case_number fw_name channel_id, where the channel_id is the channel where the command was given. 'get_data.py' will try to get logs and rsi, upload them to the case and update the corresponding slack channel with its execution log.
 
 #server
+
 1) Everything was tested on Centos 7
 
 2) Create the directory /root/jtac and copy everything to there
