@@ -1,0 +1,9 @@
+[Unit]
+Description=starts /root/jtac/slack_bot.py
+After=network.target sshd.service
+
+[Service]
+ExecStart=/root/jtac/slack_bot.py > /dev/null 2>&1 &
+
+[Install]
+WantedBy=multi-user.target
