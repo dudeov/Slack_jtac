@@ -22,7 +22,8 @@ Then 'slack_bot.py' just runs the script 'get_data.py' giving args: jtac_case_nu
 
 #server
 
-1) Everything was tested on Centos 7
+1) Everything was tested on Centos 7.
+
 Basically, we need to make sure that 'slack_bot.py' always runs, Python3 and the required modules are installed and HDD doesn't get overwhelmed with the data downloaded from the FWs.
 
 2) Create the directory /root/jtac and copy everything to there
