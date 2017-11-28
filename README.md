@@ -58,8 +58,8 @@ $ systemctl enable slack_bot
 $ systemctl start slack_bot
 
 7) Copy from /root/jtac/copy_to_cron:
-- check_if_listening.py to /etc/cron.hourly - this script check if slack_bot.py is running and restarts it if not
-- clean.sh to /etc/cron.daily - the script will delete all the files from /root/data_to_upload older than 2 days.
+- check_if_listening.py to /etc/cron.hourly - this script checks if slack_bot.py is running and restarts it if not
+- clean.sh to /etc/cron.daily - this script deletes all the files from /root/data_to_upload older than 2 days.
 
 8) This is not mandatory, but highly desireable. Copy /root/jtac/copy_to_etc_profile.d/login_2.sh to /etc/profile.d/
 login_2.sh calls another script 'landscape.py' which gives very useful system info each time the user logs in. 
