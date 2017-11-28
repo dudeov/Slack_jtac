@@ -26,7 +26,9 @@ Usually, 'slack_bot.py' runs something like this on the server:
 ```
 /root/jtac/get_data.py LB3-EFW 2017-1121-0901 --G0A2TS325 > /dev/null 2>&1 &
 ```
-Note. 'slack_bot.py' only listens the Slack and kicks the 'get_data.py' with the args. 'get_data.py' will update the Slack channel on it's own in accordance with channel_id provided to it by 'slack_bot.py'.
+Note. 'slack_bot.py' only listens the Slack and kicks the 'get_data.py' with the args. 'get_data.py' updates the Slack channel on it's own in accordance with channel_id provided to it by 'slack_bot.py'.
+
+
 #server
 
 1) Everything was tested on Centos 7.

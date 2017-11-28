@@ -19,7 +19,7 @@ def get_sysargv():
   #PW = getpass.getpass("Password for %s: "% UN)
   with open('%s/.cne' % os.path.expanduser('~'), 'rU') as fd: PW = fd.read()
   if len(sys.argv)<2:
-    tmp_str = 'Please, specify at least one FWs hostname as an argument. Example: ./get_logs.py LB3-CFW'
+    tmp_str = 'Please, specify at least one FWs hostname as an argument. Example: ./get_data.py LB3-CFW'
     print(tmp_str)
     sys.exit(1)
 
@@ -42,7 +42,7 @@ def get_sysargv():
       elif re.search(r'[0-9]+-[0-9]+-[0-9]+', i):
         sr_num = i
       else:
-        tmp_str = 'Cannot recognize args. Example: ./get_logs.py LB3-CFW 2017-1117-25252'
+        tmp_str = 'Cannot recognize args. Example: ./get_data.py LB3-CFW 2017-1117-25252'
         print(tmp_str)
         sys.exit(1)
     device_cred = {'device_hn': hn, 'device_ip': d_list.devices[hn], 'device_un': UN, 'device_pw': PW, 'case_num': sr_num, 'slack_ch': None}
@@ -57,13 +57,13 @@ def get_sysargv():
         sl_str = re.search(r'--(.*)', i).group(1)
         sl_ch = sl_str
       else:
-        tmp_str = 'Cannot recognize args. Example: ./get_logs.py LB3-CFW 2017-1117-25252 --#network-active'
+        tmp_str = 'Cannot recognize args. Example: ./get_data.py LB3-CFW 2017-1117-25252 --#network-active'
         print(tmp_str)
         sys.exit(1)
     device_cred = {'device_hn': hn, 'device_ip': d_list.devices[hn], 'device_un': UN, 'device_pw': PW, 'case_num': sr_num, 'slack_ch': sl_ch}
 
   else:
-    tmp_str = 'No match, specify at least a correct FWs hostname as an argument. Example: ./get_logs.py LB3-CFW'
+    tmp_str = 'No match, specify at least a correct FWs hostname as an argument. Example: ./get_data.py LB3-CFW'
     print(tmp_str)
     sys.exit(1)
   
