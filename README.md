@@ -8,7 +8,7 @@ There is a script 'get_data.py' that should be followed by inline args such as:
 
 Example:
 ```
-/root/jtac/get_logs.py LB3-CFW 2017-1117-25252 --#network-active
+/root/jtac/get_data.py LB3-CFW 2017-1117-25252 --#network-active
 ```
 
 The order of the args doesn't matter. Only FW name is a mandatory arg. Script will get the IP address of the device from d_list.py, username = cne, password from /root/.cne and will get the logs and RSI and will download them to /root/data_to_upload/<FW name>
@@ -22,11 +22,11 @@ If Slack channel_id is provided, the script will try upload its execution log to
 'slack_bot.py' runs in the background listening the particular command across all the Slack channels: '@netmonkey jtac jtac_case_number fw_name'. The order of the args after 'jtac' doesn't matter.
 Then 'slack_bot.py' just runs the script 'get_data.py' giving args: jtac_case_number fw_name channel_id, where the channel_id is the Slack channel where the command was given. 'get_data.py' will try to get logs and rsi, upload them to the case and update the corresponding Slack channel with its execution log.
 
-Usually, 'slacl_bot.py' runs something like this:
+Usually, 'slack_bot.py' runs something like this on the server:
 ```
 /root/jtac/get_data.py LB3-EFW 2017-1121-0901 --G0A2TS325 > /dev/null 2>&1 &
 ```
-
+Note. 'slack_bot.py' only listens the Slack and kicks the 'get_data.py' with the args. 'get_data.py' will update the Slack channel on it's own in accordance with channel_id provided to it by 'slack_bot.py'.
 #server
 
 1) Everything was tested on Centos 7.
